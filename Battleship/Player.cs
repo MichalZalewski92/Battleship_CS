@@ -8,8 +8,12 @@ namespace Battleship
 {
     public class Player
     {
+        public string Name { get; set; }
+        public int Win { get; set; }
+        public bool IsPC { get; set; } // nie wiem czy bedzie potrzebne 
+    
         private List<Ship> Ships { get; }
-
+        
         public Player()
         {
             Ships = new List<Ship>();

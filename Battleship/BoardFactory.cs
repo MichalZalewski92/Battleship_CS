@@ -10,12 +10,12 @@ namespace Battleship
     {
         public static void RandomPlacement(Board board, Ship ship)
         {
-            // Umieść statek losowo na planszy
+            //losowe ustawienie statku
         }
 
         public static void ManualPlacement(Board board, Ship ship, int x, int y)
         {
-            // Umieść statek na planszy zgodnie z wyborem użytkownika
+            // ustawienie statku manualnie
         }
     }
 
