@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Battleship
 {
-    internal class Ship
+    public class Ship
     {
+        public List<Square> Squares { get; }
+
+        public Ship()
+        {
+            Squares = new List<Square>();
+        }
     }
+
 }

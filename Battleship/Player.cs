@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace Battleship
 {
-    internal class Player
+    public class Player
     {
+        private List<Ship> Ships { get; }
+
+        public Player()
+        {
+            Ships = new List<Ship>();
+        }
+
+        public bool IsAlive
+        {
+            get { return Ships.Any(ship => ship.Squares.Any(square => square.Status == SquareStatus.Ship)); }
+        }
+
+        public void MakeMove(Board opponentBoard)
+        {
+            // logika wykonywania ruchu
+            // walidacja czy trafiony
+          
+        }
     }
+
 }

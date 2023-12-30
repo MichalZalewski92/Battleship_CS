@@ -8,5 +8,12 @@ namespace Battleship
 {
     internal class SquareStatus
     {
+        public enum SquareStatus
+        {
+            Empty = 'O',
+            Ship = 'S',
+            Hit = 'X',
+            Missed = 'M' 
+        }
     }
 }
