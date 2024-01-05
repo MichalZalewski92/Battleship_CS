@@ -87,8 +87,8 @@ namespace Battleship
         {
             for (int i = 0; i < Ocean.GetLength(0); i++)
             {
-                char label = (char)('A' + i);
-                Console.Write($"{label} ");
+
+                Console.Write($"{i + 1} ");
                 for (int j = 0; j < Ocean.GetLength(1); j++)
                 {
                     if (i == 0)
