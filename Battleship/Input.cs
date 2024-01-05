@@ -8,7 +8,7 @@ namespace Battleship
 {
     public class Input
     {
-        public int GetMainMenuChoice()
+        public static int GetMainMenuChoice()
         {
             int choice;
             while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 3)
@@ -16,6 +16,7 @@ namespace Battleship
                 Display.InvalidInputMessage();
             }
             return choice;
+            
         }
 
         // pozostałe metody do napisania

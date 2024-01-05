@@ -1,62 +1,43 @@
 ﻿namespace Battleship
 {
-    class Program
+    public class BattleshipGame
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Battleship game = new Battleship();
-            game.Run();
-        }
-    }
-
-    public class Battleship
-    {
-        private Display Display { get; }
-        private Input Input { get; }
-        private Game game;
-
-        public Battleship()
-        {
-            Display = new Display();
-            Input = new Input();
-            game = new Game();
-        }
-
-        public void Run()
-        {
+            Display.ShowFlashScreen();
             Display.ShowMainMenu();
+            Input.GetMainMenuChoice(); // zwraca choice - 1.start new game, 2.show highest scores, 3.exit game
+            Console.Clear();
+            Display.ShowFlashScreen();
 
-            while (true)
+            // tworzenie statkow
+            List<Ship> ships = new List<Ship>
+        {
+            new Ship(3),  
+            new Ship(4),  
+         
+        };
+
+            // tworzenie planszy
+            Board board = new Board(10, ships);
+
+            // wyswietlanie planszy
+            board.DisplayBoard();
+
+            // strzaly
+            Console.WriteLine("Enter row and column to take a shot (e.g. 1, 2):");
+            string[] input = Console.ReadLine().Split(' ');
+            if (input.Length == 2 && int.TryParse(input[0], out int row) && int.TryParse(input[1], out int col))
             {
-                int choice = Input.GetMainMenuChoice();
-
-                switch (choice)
-                {
-                    case 1:
-                        game.Run();
-                        break;
-                    case 2:
-                        DisplayHighScores();
-                        break;
-                    case 3:
-                        ExitGame();
-                        break;
-                    default:
-                        Display.InvalidInputMessage();
-                        break;
-                }
+                board.TakeShot(row, col);
             }
-        }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
 
-        private void DisplayHighScores()
-        {
-            // Logika wyświetlania najlepszych wyników
-        }
-
-        private void ExitGame()
-        {
-            // Logika zakończenia gry
-            Environment.Exit(0);
+            // wyswietlanie planszy po strzale
+            board.DisplayBoard();
         }
     }
 

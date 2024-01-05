@@ -8,7 +8,8 @@ namespace Battleship
 {
     public class Display
     {
-        public void ShowMainMenu()
+
+        public static void ShowMainMenu()
         {
             Console.WriteLine("Battleship Game");
             Console.WriteLine("1. Start New Game");
@@ -17,24 +18,45 @@ namespace Battleship
             Console.Write("Enter your choice (1-3): ");
         }
 
-        public void InvalidInputMessage()
+        public static void InvalidInputMessage()
         {
             Console.WriteLine("Invalid input. Please enter a valid option.");
+        }
+        private static void ClearFlashScreen(object state)
+        {
+            Console.Clear();
         }
         public static void ShowFlashScreen() //logo startowe gry 
         {
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("        ********************************************");
-            Console.Write("        *"); Console.ForegroundColor = ConsoleColor.White; Console.Write("             Battleship Game              "); Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("*");
-            Console.WriteLine("        ********************************************");
+            Console.WriteLine("        ************************************");
+            Console.Write("        *"); Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("         BATTLESHIP GAME          "); Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("*");
+            Console.WriteLine("        ************************************");
+            Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.White;
 
-            Timer t = new Timer(ClearFlashScreen, null, 0, 1000);
-            Thread.Sleep(2100);
-            t.Dispose();
 
         }
+        // przeniesc display boarda z klasy board
+        //public static void DisplayBoard()
+        //{
+        //    for (int i = 0; i < Ocean.GetLength(0); i++)
+        //    {
+        //        char label = (char)('A' + i);
+        //        Console.Write($"{label} ");
+        //        for (int j = 0; j < Ocean.GetLength(1); j++)
+        //        {
+        //            if (i == 0)
+        //            {
+        //                Console.Write($"{j + 1} ");
+        //            }
+        //            Console.Write(Ocean[i, j].GetCharacter() + " ");
+        //        }
+        //        Console.WriteLine();
+        //    }
+        //}
 
         // dodać pozostałe metody dispalya
     }

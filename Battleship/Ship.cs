@@ -8,29 +8,20 @@ namespace Battleship
 {
     public class Ship
     {
-        public List<Square> Squares { get; }
+        public List<Square> Squares { get; set; }
 
-        public Ship()
+        public Ship(int size)
         {
             Squares = new List<Square>();
+            for (int i = 0; i < size; i++)
+            {
+                Squares.Add(new Square { Status = SquareStatus.Ship });
+            }
         }
-    }
 
-    //tworzenie stwtkow : 
-    public static Ship CreateShip(ShipType type)
-    {
-        switch (type)
+        public bool IsSunk()
         {
-            case ShipType.Destroyer:
-                return new Ship(ShipType.Destroyer, 2);
-            case ShipType.Cruiser:
-                return new Ship(ShipType.Cruiser, 3);
-            case ShipType.Submarine:
-                return new Ship(ShipType.Submarine, 3);
-            case ShipType.Battleship:
-                return new Ship(ShipType.Battleship, 4);
-            default:
-                return new Ship(ShipType.Carrier, 5);
+            return Squares.All(square => square.Status == SquareStatus.Hit);
         }
     }
 }
