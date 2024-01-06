@@ -25,7 +25,7 @@
         };
 
             // tworzenie planszy
-            Board board = new Board(10, ships);
+            Board board = new Board(levelChoice, ships);
 
             // wyswietlanie planszy
             board.DisplayBoard();

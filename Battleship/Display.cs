@@ -11,10 +11,10 @@ namespace Battleship
         public static void ShowLevelMenu()
         {
             Console.Clear();
-            Console.WriteLine("Hard : 20 x 20");
-            Console.WriteLine("Medium : 15 x 15");
             Console.WriteLine("Easy : 10 x 10");
-            Console.WriteLine("Enter your level (1 = Hard, 2 = Medium, 3 = Easy):");
+            Console.WriteLine("Medium : 20 x 20");
+            Console.WriteLine("Hard : 30 x 30"); 
+            Console.WriteLine("Enter your level (1 = Easy, 2 = Medium, 3 = Hard ):");
         }
 
         public static void ShowMainMenu()

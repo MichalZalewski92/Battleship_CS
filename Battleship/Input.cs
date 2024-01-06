@@ -22,7 +22,7 @@ namespace Battleship
                 Display.InvalidInputMessage();
                 // dopisać logikę wyboru planszy i tworzenia odpowiedniej wielkości planszy na podstawie wyboru
             }
-            return levelChoice;
+            return levelChoice * 10;
         }
 
         public static int GetMainMenuChoice()
