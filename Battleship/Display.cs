@@ -8,6 +8,14 @@ namespace Battleship
 {
     public class Display
     {
+        public static void ShowLevelMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Hard : 20 x 20");
+            Console.WriteLine("Medium : 15 x 15");
+            Console.WriteLine("Easy : 10 x 10");
+            Console.WriteLine("Enter your level (1 = Hard, 2 = Medium, 3 = Easy):");
+        }
 
         public static void ShowMainMenu()
         {
@@ -22,11 +30,13 @@ namespace Battleship
         {
             Console.WriteLine("Invalid input. Please enter a valid option.");
         }
+
         private static void ClearFlashScreen(object state)
         {
             Console.Clear();
         }
-        public static void ShowFlashScreen() //logo startowe gry 
+
+        public static void ShowFlashScreen() // logo startowe gry 
         {
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Red;
@@ -36,10 +46,9 @@ namespace Battleship
             Console.WriteLine("        ************************************");
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.White;
-
-
         }
-        // przeniesc display boarda z klasy board
+
+        // przenieść display boarda z klasy board
         //public static void DisplayBoard()
         //{
         //    for (int i = 0; i < Ocean.GetLength(0); i++)
@@ -60,5 +69,4 @@ namespace Battleship
 
         // dodać pozostałe metody dispalya
     }
-
 }

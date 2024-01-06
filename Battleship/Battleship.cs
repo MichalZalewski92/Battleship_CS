@@ -6,9 +6,15 @@
         {
             Display.ShowFlashScreen();
             Display.ShowMainMenu();
-            Input.GetMainMenuChoice(); // zwraca choice - 1.start new game, 2.show highest scores, 3.exit game
+            int choice = Input.GetMainMenuChoice();
+            Display.ShowLevelMenu();
+            int levelChoice = Input.GetLevelChoice();
+            Console.Clear();
+            Console.WriteLine("What's your name sailor ?");
+            string name = Input.GetPlayerName();
             Console.Clear();
             Display.ShowFlashScreen();
+            
 
             // tworzenie statkow
             List<Ship> ships = new List<Ship>
@@ -25,7 +31,9 @@
             board.DisplayBoard();
 
             // strzaly
+            Console.WriteLine("*************************************************");
             Console.WriteLine("Enter row and column to take a shot (e.g. 1, 2):");
+            Console.WriteLine("*************************************************");
             string[] input = Console.ReadLine().Split(' ');
             if (input.Length == 2 && int.TryParse(input[0], out int row) && int.TryParse(input[1], out int col))
             {
