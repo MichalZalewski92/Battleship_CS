@@ -13,7 +13,7 @@
             Console.WriteLine("What's your name sailor ?");
             string name = Input.GetPlayerName();
             Console.Clear();
-            Display.ShowFlashScreen();
+            
             
             
 
@@ -34,7 +34,7 @@
             while (!ships.All(ship => ship.IsSunk()))
             {
                 Console.Clear();
-
+                Display.ShowFlashScreen();
                 board.DisplayBoard();
 
                 // strzaly
