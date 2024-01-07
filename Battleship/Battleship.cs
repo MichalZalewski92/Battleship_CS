@@ -30,7 +30,8 @@
             Board board = new Board(levelChoice, ships);
 
             // glowna petla gry,
-            // board ma popieprzone koordynanty :) trzeba wpisywac np. 1 1 i dodatkowo na obu osiach jest przesuniecie (-1)
+            // board ma popieprzone koordynanty :) trzeba wpisywac np. 1 1 i dodatkowo na obu osiach jest przesuniecie (+1),
+            // można strzały na inpucie oba dać -1 i powinno rozwiązać, ale narazie tak dam ale, może masz lepszy pomysł
             while (!ships.All(ship => ship.IsSunk()))
             {
                 Console.Clear();
@@ -45,7 +46,7 @@
                 string[] input = Console.ReadLine().Split(' ');
                 if (input.Length == 2 && int.TryParse(input[0], out int row) && int.TryParse(input[1], out int col))
                 {
-                    board.TakeShot(row, col);
+                    board.TakeShot(row - 1, col - 1);// odjęcie żeby strzał się zgadzał z osiami x i y
                 }
                 else
                 {
