@@ -1,4 +1,6 @@
-﻿namespace Battleship
+﻿using System.Text;
+
+namespace Battleship
 {
     public class BattleshipGame
     {
@@ -13,10 +15,10 @@
             Console.WriteLine("What's your name sailor ?");
             string name = Input.GetPlayerName();
             Console.Clear();
-            
-            
-            
 
+
+
+            Console.OutputEncoding = Encoding.UTF8; 
             // tworzenie statkow
             List<Ship> ships = new List<Ship>
         {
@@ -35,6 +37,7 @@
             while (!ships.All(ship => ship.IsSunk()))
             {
                 Console.Clear();
+                Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
                 board.DisplayBoard();
 
