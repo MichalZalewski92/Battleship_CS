@@ -31,6 +31,7 @@
             board.DisplayBoard();
 
             // strzaly
+            Console.WriteLine("");
             Console.WriteLine("*************************************************");
             Console.WriteLine("Enter row and column to take a shot (e.g. 1, 2):");
             Console.WriteLine("*************************************************");

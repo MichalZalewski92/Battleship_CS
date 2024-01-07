@@ -24,7 +24,7 @@ namespace Battleship
             {
                 for (int j = 0; j < Ocean.GetLength(1); j++)
                 {
-                    Ocean[i, j] = new Square();
+                    Ocean[i , j ] = new Square();
                 }
             }
 
@@ -85,21 +85,24 @@ namespace Battleship
 
         public void DisplayBoard()
         {
+            Console.Write("  ");
+            for (int j = 0; j < Ocean.GetLength(1); j++)
+            {
+                Console.Write($"{j + 1} ");
+            }
+            Console.WriteLine();
+
             for (int i = 0; i < Ocean.GetLength(0); i++)
             {
-
-                Console.Write($"{i + 1} ");
+                Console.Write($"{(char)('A' + i)} ");
                 for (int j = 0; j < Ocean.GetLength(1); j++)
                 {
-                    if (i == 0)
-                    {
-                        Console.Write($"{j + 1} ");
-                    }
                     Console.Write(Ocean[i, j].GetCharacter() + " ");
                 }
                 Console.WriteLine();
             }
         }
+
 
         public void TakeShot(int row, int col)
         {
