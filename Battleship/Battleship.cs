@@ -15,6 +15,7 @@
             Console.Clear();
             Display.ShowFlashScreen();
             
+            
 
             // tworzenie statkow
             List<Ship> ships = new List<Ship>
@@ -23,30 +24,38 @@
             new Ship(4),  
          
         };
+          
 
             // tworzenie planszy
             Board board = new Board(levelChoice, ships);
 
-            // wyswietlanie planszy
-            board.DisplayBoard();
-
-            // strzaly
-            Console.WriteLine("");
-            Console.WriteLine("*************************************************");
-            Console.WriteLine("Enter row and column to take a shot (e.g. 1, 2):");
-            Console.WriteLine("*************************************************");
-            string[] input = Console.ReadLine().Split(' ');
-            if (input.Length == 2 && int.TryParse(input[0], out int row) && int.TryParse(input[1], out int col))
+            // glowna petla gry,
+            // board ma popieprzone koordynanty :) trzeba wpisywac np. 1 1 i dodatkowo na obu osiach jest przesuniecie (-1)
+            while (!ships.All(ship => ship.IsSunk()))
             {
-                board.TakeShot(row, col);
-            }
-            else
-            {
-                Console.WriteLine("Invalid input.");
-            }
+                Console.Clear();
 
-            // wyswietlanie planszy po strzale
-            board.DisplayBoard();
+                board.DisplayBoard();
+
+                // strzaly
+                Console.WriteLine("");
+                Console.WriteLine("*************************************************");
+                Console.WriteLine("Enter row and column to take a shot (e.g. 1, 2):");
+                Console.WriteLine("*************************************************");
+                string[] input = Console.ReadLine().Split(' ');
+                if (input.Length == 2 && int.TryParse(input[0], out int row) && int.TryParse(input[1], out int col))
+                {
+                    board.TakeShot(row, col);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+
+                // wyswietlanie planszy po strzale
+                board.DisplayBoard();
+                
+            }
         }
     }
 
