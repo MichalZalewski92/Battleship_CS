@@ -104,15 +104,47 @@ namespace Battleship
         }
 
 
-        public void TakeShot(int row, int col)
+        //public void TakeShot(int row, int col)
+        //{
+        //    Square targetSquare = Ocean[row, col];
+
+        //    if (targetSquare.Status == SquareStatus.Ship)
+        //    {
+        //        targetSquare.Status = SquareStatus.Hit;
+        //        Console.WriteLine("Hit!");
+        //        CheckForSunkShips();
+        //    }
+        //    else if (targetSquare.Status == SquareStatus.Empty)
+        //    {
+        //        targetSquare.Status = SquareStatus.Miss;
+        //        Console.WriteLine("Miss!");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("You already shot there!");
+        //    }
+        //}
+
+        //private void CheckForSunkShips()
+        //{
+        //    foreach (Ship ship in Ships)
+        //    {
+        //        if (ship.IsSunk())
+        //        {
+        //            Console.WriteLine("You sank a ship!");
+        //        }
+        //    }
+        //}
+
+        public void TakeShot(int row, int col, Board opponentBoard)
         {
-            Square targetSquare = Ocean[row, col];
+            Square targetSquare = opponentBoard.Ocean[row, col]; // Oddajemy strzał na planszy przeciwnika
 
             if (targetSquare.Status == SquareStatus.Ship)
             {
                 targetSquare.Status = SquareStatus.Hit;
                 Console.WriteLine("Hit!");
-                CheckForSunkShips();
+                CheckForSunkShips(opponentBoard);
             }
             else if (targetSquare.Status == SquareStatus.Empty)
             {
@@ -125,9 +157,9 @@ namespace Battleship
             }
         }
 
-        private void CheckForSunkShips()
+        private void CheckForSunkShips(Board opponentBoard)
         {
-            foreach (Ship ship in Ships)
+            foreach (Ship ship in opponentBoard.Ships)
             {
                 if (ship.IsSunk())
                 {
@@ -135,6 +167,7 @@ namespace Battleship
                 }
             }
         }
+
 
     }
 }
