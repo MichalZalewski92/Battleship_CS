@@ -10,11 +10,13 @@ namespace Battleship
     {
         public Square[,] Ocean { get; }
         public List<Ship> Ships { get; }
+        public int Size { get; }
 
         public Board(int size, List<Ship> ships)
         {
             Ocean = new Square[size, size];
             Ships = ships;
+            Size = size;
             InitializeBoard();
         }
 

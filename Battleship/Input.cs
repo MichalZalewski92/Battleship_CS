@@ -50,6 +50,27 @@ namespace Battleship
             return choice;
         }
 
+        public static (int, int) GetShotInput(Board board)
+        {
+            while (true)
+            {
+                string input = Console.ReadLine().Trim().ToUpper(); // Wczytujemy dane i konwertujemy na wielkie litery
+
+                if (input.Length == 2 && char.IsLetter(input[0]) && char.IsDigit(input[1]))
+                {
+                    int col = input[0] - 'A'; // Konwersja litery na numer kolumny
+                    int row = int.Parse(input[1].ToString()) - 1; // Konwersja cyfry na numer wiersza
+
+                    if (row >= 0 && row < board.Size && col >= 0 && col < board.Size) //  rozmiar planszy z parametru
+                    {
+                        return (row, col);
+                    }
+                }
+
+                Console.WriteLine("Invalid input format. Please enter a valid shot (e.g. A1):");
+            }
+        }
+
         // pozostałe metody do napisania
     }
 }
