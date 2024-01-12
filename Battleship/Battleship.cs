@@ -26,13 +26,19 @@ namespace Battleship
             new Ship(4),  
          
         };
+            List<Ship> ships2 = new List<Ship>
+        {
+            new Ship(3),
+            new Ship(4),
+
+        };
 
 
             // tworzenie planszy
             //Board board = new Board(levelChoice, ships);
 
             Board player1Board = new Board(levelChoice, ships);
-            Board player2Board = new Board(levelChoice, ships);
+            Board player2Board = new Board(levelChoice, ships2);
 
 
             // glowna petla gry,
