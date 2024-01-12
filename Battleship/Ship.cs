@@ -9,6 +9,7 @@ namespace Battleship
     public class Ship
     {
         public List<Square> Squares { get; set; }
+        public bool IsSunk { get; private set; }
 
         public Ship(int size)
         {
@@ -17,11 +18,21 @@ namespace Battleship
             {
                 Squares.Add(new Square { Status = SquareStatus.Ship });
             }
+
+            IsSunk = false;
         }
 
-        public bool IsSunk()
+        public void CheckIfSunk()
         {
-            return Squares.All(square => square.Status == SquareStatus.Hit);
+            if (Squares.All(square => square.Status == SquareStatus.Hit))
+            {
+                IsSunk = true;
+                Console.WriteLine("Ship is sunk!");
+            }
+            else
+            {
+                Console.WriteLine("Ship is not sunk yet.");
+            }
         }
     }
 }

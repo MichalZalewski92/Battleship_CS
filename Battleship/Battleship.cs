@@ -4,6 +4,7 @@ namespace Battleship
 {
     public class BattleshipGame
     {
+        private static int currentPlayer = 1;
         public static void Main(string[] args)
         {
             Display.ShowFlashScreen();
@@ -11,20 +12,20 @@ namespace Battleship
             int choice = Input.GetMainMenuChoice();
             Display.ShowLevelMenu();
             int levelChoice = Input.GetLevelChoice();
-            Console.Clear();
-            Console.WriteLine("What's your name sailor ?");
-            string name = Input.GetPlayerName();
-            Console.Clear();
+            //Console.Clear();
+            //Console.WriteLine("What's your name sailor ?");
+            //string name = Input.GetPlayerName();
+            //Console.Clear();
 
 
 
-            Console.OutputEncoding = Encoding.UTF8; 
+            Console.OutputEncoding = Encoding.UTF8;
             // tworzenie statkow
             List<Ship> ships = new List<Ship>
         {
-            new Ship(3),  
-            new Ship(4),  
-         
+            new Ship(3),
+            new Ship(4),
+
         };
             List<Ship> ships2 = new List<Ship>
         {
@@ -72,12 +73,12 @@ namespace Battleship
 
             //}
 
-            while (!player1Board.Ships.All(ship => ship.IsSunk()) && !player2Board.Ships.All(ship => ship.IsSunk()))
+            while (!player1Board.Ships.All(ship => ship.IsSunk) && !player2Board.Ships.All(ship => ship.IsSunk))
             {
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                player1Board.DisplayBoard(); // Wyświetlamy planszę gracza 1
+                player1Board.DisplayBoard(true); // Wyświetlamy planszę gracza 1
 
                 // Strzały gracza 1
                 Console.WriteLine("");
@@ -98,14 +99,16 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                player1Board.DisplayBoard();
+                player1Board.DisplayBoard(true);
 
                 // Sprawdzenie, czy gracz 1 zatopił wszystkie statki gracza 2
-                if (player2Board.Ships.All(ship => ship.IsSunk()))
+                if (player1Board.Ships.All(ship => ship.IsSunk))
                 {
                     Console.WriteLine("Player 1 wins!");
                     break;
                 }
+
+
 
                 // Zamiana graczy
                 Console.WriteLine("Press Enter to switch players...");
@@ -114,7 +117,7 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                player2Board.DisplayBoard(); // Wyświetlamy planszę gracza 2
+                player2Board.DisplayBoard(true); // Wyświetlamy planszę gracza 2
 
                 // Strzały gracza 2
                 Console.WriteLine("");
@@ -135,10 +138,10 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                player2Board.DisplayBoard();
+                player2Board.DisplayBoard(true);
 
                 // Sprawdzenie, czy gracz 2 zatopił wszystkie statki gracza 1
-                if (player1Board.Ships.All(ship => ship.IsSunk()))
+                if (player1Board.Ships.All(ship => ship.IsSunk))
                 {
                     Console.WriteLine("Player 2 wins!");
                     break;

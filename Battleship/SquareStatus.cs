@@ -4,5 +4,6 @@ public enum SquareStatus
     Empty,
     Ship,
     Hit,
-    Miss
+    Miss,
+    SunkenShip
 }

@@ -21,13 +21,15 @@ namespace Battleship
             switch (Status)
             {
                 case SquareStatus.Empty:
-                    return " ";//🌊
+                    return "\x1b[34m≈≈\x1b[0m";//🌊
                 case SquareStatus.Ship:
                     return "🚢";
                 case SquareStatus.Hit:
                     return "💥";
                 case SquareStatus.Miss:
-                    return "■";
+                    return "🔳";//■, ⬜
+                case SquareStatus.SunkenShip:
+                    return "☠️";
                 default:
                     return " ";
             }

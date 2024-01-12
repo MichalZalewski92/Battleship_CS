@@ -24,7 +24,7 @@ namespace Battleship
             {
                 for (int j = 0; j < Ocean.GetLength(1); j++)
                 {
-                    Ocean[i , j ] = new Square();
+                    Ocean[i, j] = new Square();
                 }
             }
 
@@ -83,58 +83,80 @@ namespace Battleship
             }
         }
 
-        public void DisplayBoard()
+        //public void DisplayBoard()
+        //{
+        //    Console.Write("   ");
+        //    for (int j = 0; j < Ocean.GetLength(1); j++)
+        //    {
+        //        Console.Write($"{j + 1} ");
+        //    }
+        //    Console.WriteLine();
+
+        //    for (int i = 0; i < Ocean.GetLength(0); i++)
+        //    {
+        //        Console.Write($"{(char)('A' + i)} ");
+        //        for (int j = 0; j < Ocean.GetLength(1); j++)
+        //        {
+        //            Console.Write(Ocean[i, j].GetCharacter() + " ");
+        //        }
+        //        Console.WriteLine();
+        //    }
+        //}
+
+        //public void DisplayBoard()
+        //{
+        //    StringBuilder boardRepresentation = new StringBuilder();
+        //    boardRepresentation.Append(" ");
+        //    for (int j = 0; j < Ocean.GetLength(1); j++)
+        //    {
+        //        boardRepresentation.Append(Convert.ToChar('A' + j) + " ");
+        //    }
+        //    boardRepresentation.AppendLine();
+
+        //    for (int i = 0; i < Ocean.GetLength(0); i++)
+        //    {
+        //        boardRepresentation.Append($"{i + 1:D2} "); // D2 zapewnia dwucyfrowy format liczby
+        //        for (int j = 0; j < Ocean.GetLength(1); j++)
+        //        {
+        //            boardRepresentation.Append(Ocean[i, j].GetCharacter() + " ");
+        //        }
+        //        boardRepresentation.AppendLine();
+        //    }
+
+        //    Console.WriteLine(boardRepresentation.ToString());
+        //}
+
+        public void DisplayBoard(bool isOpponent = false)
         {
-            Console.Write("  ");
-            for (int j = 0; j < Ocean.GetLength(1); j++)
+            int boardSize = Ocean.GetLength(1); // Rozmiar planszy
+
+            // Wydruk nagłówka kolumn (litery)
+            Console.Write("   ");
+            for (int j = 0; j < boardSize; j++)
             {
-                Console.Write($"{j + 1} ");
+                Console.Write($"{Convert.ToChar('A' + j)}  ");
             }
             Console.WriteLine();
 
+            // Wydruk planszy
             for (int i = 0; i < Ocean.GetLength(0); i++)
             {
-                Console.Write($"{(char)('A' + i)} ");
-                for (int j = 0; j < Ocean.GetLength(1); j++)
+                Console.Write($"{i + 1:D2} "); // Formatowanie na dwie cyfry dla numerów wierszy
+                for (int j = 0; j < boardSize; j++)
                 {
-                    Console.Write(Ocean[i, j].GetCharacter() + " ");
+                    if (isOpponent && Ocean[i, j].Status == SquareStatus.Ship)
+                    {
+                        Console.Write("\x1b[34m≈≈\x1b[0m "); // Ukrywamy statki przeciwnika
+                    }
+                    else
+                    {
+                        Console.Write($"{Ocean[i, j].GetCharacter()} ");
+                    }
                 }
                 Console.WriteLine();
             }
         }
 
-
-        //public void TakeShot(int row, int col)
-        //{
-        //    Square targetSquare = Ocean[row, col];
-
-        //    if (targetSquare.Status == SquareStatus.Ship)
-        //    {
-        //        targetSquare.Status = SquareStatus.Hit;
-        //        Console.WriteLine("Hit!");
-        //        CheckForSunkShips();
-        //    }
-        //    else if (targetSquare.Status == SquareStatus.Empty)
-        //    {
-        //        targetSquare.Status = SquareStatus.Miss;
-        //        Console.WriteLine("Miss!");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("You already shot there!");
-        //    }
-        //}
-
-        //private void CheckForSunkShips()
-        //{
-        //    foreach (Ship ship in Ships)
-        //    {
-        //        if (ship.IsSunk())
-        //        {
-        //            Console.WriteLine("You sank a ship!");
-        //        }
-        //    }
-        //}
 
         public void TakeShot(int row, int col, Board opponentBoard)
         {
@@ -144,7 +166,13 @@ namespace Battleship
             {
                 targetSquare.Status = SquareStatus.Hit;
                 Console.WriteLine("Hit!");
-                CheckForSunkShips(opponentBoard);
+
+                foreach (Ship ship in opponentBoard.Ships)
+                {
+                    ship.CheckIfSunk(); // Sprawdzamy, czy trafiony statek został zatopiony
+                }
+
+                CheckForSunkShips(opponentBoard); // Sprawdzamy, czy zatopiono jakieś statki przeciwnika
             }
             else if (targetSquare.Status == SquareStatus.Empty)
             {
@@ -157,16 +185,19 @@ namespace Battleship
             }
         }
 
+
+
         private void CheckForSunkShips(Board opponentBoard)
         {
             foreach (Ship ship in opponentBoard.Ships)
             {
-                if (ship.IsSunk())
+                if (ship.IsSunk)
                 {
                     Console.WriteLine("You sank a ship!");
                 }
             }
         }
+
 
 
     }
