@@ -12,10 +12,13 @@ namespace Battleship
             int choice = Input.GetMainMenuChoice();
             Display.ShowLevelMenu();
             int levelChoice = Input.GetLevelChoice();
-            //Console.Clear();
-            //Console.WriteLine("What's your name sailor ?");
-            //string name = Input.GetPlayerName();
-            //Console.Clear();
+            Console.Clear();
+            Console.WriteLine("What's your name sailor ?");
+            string name = Input.GetPlayerName();
+            Console.Clear();
+            Console.WriteLine("What's yours opponent name?");
+            string nameOpponent = Input.GetPlayerName();
+            Console.Clear();
 
 
 
@@ -49,16 +52,16 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                Console.WriteLine("Player 2");
+                Console.WriteLine($"{nameOpponent}'s board");
                 player1Board.DisplayBoard(true);
                 Console.WriteLine("");
-                Console.WriteLine("Player 1");
+                Console.WriteLine($"{name}'s board");
                 player2Board.DisplayBoard(false);
 
                 // Strzały gracza 1
                 Console.WriteLine("");
                 Console.WriteLine("*************************************************");
-                Console.WriteLine("Player 1, enter row and column to take a shot (e.g. A1):");
+                Console.WriteLine($"{name}, enter row and column to take a shot (e.g. A1):");
                 Console.WriteLine("*************************************************");
                 (int row1, int col1) = Input.GetShotInput(player1Board);
 
@@ -71,16 +74,16 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                Console.WriteLine("Player 2");
+                Console.WriteLine($"{nameOpponent}'s board");
                 player1Board.DisplayBoard(true);
                 Console.WriteLine("");
-                Console.WriteLine("Player 1");
+                Console.WriteLine($"{name}'s board");
                 player2Board.DisplayBoard(false);
 
                 // Sprawdzenie, czy gracz 1 zatopił wszystkie statki gracza 2
                 if (player1Board.Ships.All(ship => ship.IsSunk))
                 {
-                    Console.WriteLine("Player 1 wins!");
+                    Console.WriteLine($"{name} wins!");
                     break;
                 }
 
@@ -94,16 +97,16 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                Console.WriteLine("Player 1");
+                Console.WriteLine($"{name}'s board");
                 player2Board.DisplayBoard(true); // Wyświetlamy planszę gracza 2
                 Console.WriteLine("");
-                Console.WriteLine("Player 2");
+                Console.WriteLine($"{nameOpponent}'s board");
                 player1Board.DisplayBoard(false);
 
                 // Strzały gracza 2
                 Console.WriteLine("");
                 Console.WriteLine("*************************************************");
-                Console.WriteLine("Player 2, enter row and column to take a shot (e.g. A1):");
+                Console.WriteLine($"{nameOpponent}, enter row and column to take a shot (e.g. A1):");
                 Console.WriteLine("*************************************************");
                 (int row2, int col2) = Input.GetShotInput(player2Board);
 
@@ -117,16 +120,16 @@ namespace Battleship
                 Console.Clear();
                 Console.OutputEncoding = Encoding.UTF8;
                 Display.ShowFlashScreen();
-                Console.WriteLine("Player 1");
+                Console.WriteLine($"{name}'s board");
                 player2Board.DisplayBoard(true);
                 Console.WriteLine("");
-                Console.WriteLine("Player 2");
+                Console.WriteLine($"{nameOpponent}'s board");
                 player1Board.DisplayBoard(false);
 
                 // Sprawdzenie, czy gracz 2 zatopił wszystkie statki gracza 1
                 if (player1Board.Ships.All(ship => ship.IsSunk))
                 {
-                    Console.WriteLine("Player 2 wins!");
+                    Console.WriteLine($"{nameOpponent}  wins!");
                     break;
                 }
 
